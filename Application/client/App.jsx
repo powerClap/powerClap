@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
+import React, { useContext } from 'react';
+import { GlobalContext, GlobalProvider } from "../GlobalContext";
 
 function App() {
   const [count, setCount] = useState(0)
