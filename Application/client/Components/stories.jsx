@@ -1,6 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'; 
+import React from 'react';
 
 //I feel like it is just a column. Unsure really what to put
 
@@ -16,5 +17,4 @@ function Stories(){
     </div>
   );
 }
-
-export default stories;
+export default Stories;
