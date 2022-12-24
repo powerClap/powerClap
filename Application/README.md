@@ -1,1 +1,0 @@
-This is from troyFront try #2.
