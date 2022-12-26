@@ -1,6 +1,6 @@
 import express from 'express';
 import http from 'http';
-import connectDB from './db.js'
+// import connectDB from './db.js'
 
 const app = express();
 const server = http.createServer(app);

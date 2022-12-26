@@ -1,31 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+// import { useState } from 'react';
+// import reactLogo from './assets/react.svg';
+// import { GlobalContext, GlobalProvider } from "./Context/GlobalContext";
+
+// make App as a dummy container to display various routes as nav bar
 import './App.css'
-import React, { useContext } from 'react';
-import { GlobalContext, GlobalProvider } from "../GlobalContext";
- 
-// use this to pass the global state to all children
-const App = () => {
- return (
-   <GlobalProvider>
-     <Main />
-   </GlobalProvider>
- )
-};
- 
-// use this component as your main app
-const Main = () => {
- // use state variables by destructuring from useContext(context)
- const { stateVar, changeStateVar } = useContext(GlobalContext)
- return (
-   <>
-     {stateVar}
-     <button onClick={() => changeStateVar('newValue')} />
-   </>
- )
-};
- 
+import React from 'react';
+import { Link, Route, Routes } from 'react-router-dom';
+import Login from './Components/Login.jsx';
+
+
+const App = props => {
+  return (
+    <>
+      <div>
+        <ul>
+          <li><Link to='/'>Home</Link></li>
+        </ul>
+      </div>
+
+      <Routes>
+        <Route path='/' element={<Login />} />
+      </Routes>
+    
+    </>
+  )
+}
+
+
 export default App;
+
+
+
+// use this to pass the global state to all children
+// const App = () => {
+//  return (
+//    <GlobalProvider>
+//      <Main />
+//    </GlobalProvider>
+//  )
+// };
+ 
+// // use this component as your main app
+// const Main = () => {
+//  // use state variables by destructuring from useContext(context)
+//  const { stateVar, changeStateVar } = useContext(GlobalContext)
+//  return (
+//    <>
+//      {stateVar}
+//      <button onClick={() => changeStateVar('newValue')} />
+//    </>
+//  )
+// };
+ 
+// export default App;
 
 
 
