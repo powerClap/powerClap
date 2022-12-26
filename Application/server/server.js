@@ -1,12 +1,41 @@
 import express from 'express';
-import http from 'http';
-// import connectDB from './db.js'
+import cors from 'cors';
+import userController from './controllers/userController.js';
+// import http from 'http';
 
-const app = express();
-const server = http.createServer(app);
+// Make sure server is connected to mongoDB database
+import connectDB from './db.js'
+connectDB();
 
 const port = process.env.PORT || 3000;
+const app = express();
 
-server.listen(port, () => {
+// to make sure server can talk to the frondend without CORS restriction
+app.use(cors());
+
+// to enable request body parser
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
+
+// const server = http.createServer(app);
+
+app.post('/user/signup', userController.signup, (req, res) => {
+  return res.status(200).json();
+})
+
+
+
+
+
+
+
+app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
+
+
+// server.listen(port, () => {
+//   console.log(`Listening on port ${port}`);
+// });
