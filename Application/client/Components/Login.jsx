@@ -42,7 +42,7 @@ const Login = props => {
       }
       const response = await fetch(url, requestOption);
       // console.log(response);
-      if (response.status === 404) {
+      if (response.status === 401) {
         setMessage('Username or password wrong');
         return;
       } else {

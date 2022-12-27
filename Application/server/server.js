@@ -31,7 +31,22 @@ app.post('/user/login', userController.login, (req, res) => {
 })
 
 
+//route for url not existed
+app.use((req, res) => {
+  res.status(404).send('This is not the page you\'re looking for...')
+})
 
+//Express global error handler
+app.use((err, req, res, next) => {
+  const defaultErr = {
+    log: 'Express error handler caught unknown middleware error',
+    status: 500,
+    message: { err: 'An error occurred'},
+  };
+
+  const errorObj = Object.assign({}, defaultErr, err);
+  return res.status(errorObj.status).json(errorObj.message);
+})
 
 
 
