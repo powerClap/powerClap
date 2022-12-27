@@ -20,10 +20,15 @@ app.use(express.urlencoded({extended: true}));
 
 // const server = http.createServer(app);
 
+//route for new user sign up
 app.post('/user/signup', userController.signup, (req, res) => {
   return res.status(200).json();
 })
 
+//route for user regular log in
+app.post('/user/login', userController.login, (req, res) => {
+  return res.status(200).json();
+})
 
 
 
