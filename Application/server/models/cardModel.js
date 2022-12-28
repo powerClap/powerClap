@@ -10,7 +10,7 @@ const cardSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  responsibleBy: [{type: ObjectId, ref: 'User'}],
+  responsibleBy: [{type: String}],
   stage: {type: String},
 })
 

@@ -10,7 +10,7 @@ const projectSchema = mongoose.Schema({
     ref: 'User',
     required: true
   },
-  members: [{type: ObjectId, ref: 'User'}]
+  members: [{type: String}]
 })
 
 
