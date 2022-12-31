@@ -5,11 +5,16 @@ const projectSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  managedBy: {
-    type: ObjectId,
-    ref: 'User',
+
+  projectDescription: {
+    type: String,
     required: true
   },
+  // managedBy: {
+  //   type: ObjectId,
+  //   ref: 'User',
+  //   required: true
+  // },
   members: [{type: String}]
 })
 
