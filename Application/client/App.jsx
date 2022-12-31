@@ -1,12 +1,15 @@
 // import { useState } from 'react';
 // import reactLogo from './assets/react.svg';
-// import { GlobalContext, GlobalProvider } from "./Context/GlobalContext";
+// import { GlobalContext, GlobalProvider } from "./Context/GlobalContext"
 
 // make App as a dummy container to display various routes as nav bar
 import './App.css'
 import React from 'react';
+import { useEffect } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import Login from './Components/Login.jsx';
+import Dashboard from './Components/Dashboard.jsx';
+import CreateProject from './Components/CreateProject.jsx';
 
 
 const App = props => {
@@ -20,6 +23,7 @@ const App = props => {
 
       <Routes>
         <Route path='/' element={<Login />} />
+        <Route path='/dashboard' element={<><CreateProject /><Dashboard /></>} />
       </Routes>
     
     </>

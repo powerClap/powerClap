@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 // Customized the useInput function to save user input on the login/signup page
 const useInput = init => {
@@ -12,13 +13,15 @@ const useInput = init => {
 
 const Login = props => {
 
+  const navigate = useNavigate();  
+
   const [ username, usernameOnChange ] = useInput('');
   const [ password, passwordOnChange ] = useInput('');
 
   const [ message, setMessage ] = useState('');
 
   // handleLogin will send user input to the backend route set up for user authentication
-  const handleLogin = async () => {
+  const handleLogin = () => {
     //userName and password are what the user put in the form
     // console.log(username, password);
 
@@ -40,22 +43,33 @@ const Login = props => {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(userInfo)
       }
-      const response = await fetch(url, requestOption);
-      // console.log(response);
-      if (response.status === 401) {
-        setMessage('Username or password wrong');
-        return;
-      } else {
-        setMessage('');
-        console.log('login successful')
-        //need to redirect user to their board page?
-        return;
-      }
+      fetch(url, requestOption)
+        .then((response) => response.json())
+        .then(({ success }) => {
+          if (success) navigate('/dashboard');
+          else setMessage('Username or password wrong');
+        })
+        .catch(err => console.log(err))
+    
+
+      // console.log('json', response.json());
+      // console.log('no json', response);
+      // // if (response.status === 401) {
+      // if (!response.result.success) {
+      //   setMessage('Username or password wrong');
+      //   return;
+      // } else {
+      //   setMessage('');
+      //   console.log('login successful');
+      //   //need to redirect user to their dashboard page
+      //   navigate('/dashboard')
+      //   return;
+      // }
     }
   }
 
   //handleSignup => should create new user information in database
-  const handleSignup = () => {
+  const handleSignup = async () => {
     // console.log(username, password);
     // Store username and password in a userInfo object
     const userInfo = {
@@ -75,7 +89,7 @@ const Login = props => {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(userInfo)
       }
-      const response = fetch(url, requestOption);
+      const response = await fetch(url, requestOption);
     }
   }
 
