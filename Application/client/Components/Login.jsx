@@ -41,8 +41,10 @@ const Login = props => {
       const requestOption = {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(userInfo)
-      }
+        body: JSON.stringify(userInfo),
+        // mode: 'no-cors',
+        credentials: 'include',
+      };
       fetch(url, requestOption)
         .then((response) => response.json())
         .then(({ success }) => {
@@ -87,7 +89,8 @@ const Login = props => {
       const requestOption = {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(userInfo)
+        body: JSON.stringify(userInfo),
+        withCredentials: true,
       }
       const response = await fetch(url, requestOption);
     }
@@ -95,6 +98,7 @@ const Login = props => {
 
   //handleGoogle send request to backend for google Oauth
   const handleGoogle = () => {
+    navigate('google/callback');
     console.log('This should send request for google Oauth');
   }
 

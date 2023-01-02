@@ -11,6 +11,8 @@ const cardSchema = mongoose.Schema({
     required: true,
   },
   responsibleBy: [{type: String}],
+  startDate: {type: String},
+  deadline: {type: String},
   stage: {type: String},
 })
 

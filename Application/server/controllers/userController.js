@@ -44,9 +44,8 @@ userController.login = (req, res, next) => {
       } else {
         // if username and password are found and matched in database, proceed to the next middleware
         if (currUser) {
-          req.session.user = currUser;
+          req.session.user = currUser.username;
           req.session.save();
-          // console.log('req.session:', req.session);
           res.locals.validate = { success: true };
           // res.locals.currUser = currUser;
           // return next({
@@ -71,7 +70,7 @@ userController.login = (req, res, next) => {
 
 
 userController.createProject = (req, res, next) => {
-  console.log('should get project info', req.body)
+  // console.log('should get project info', req.body)
   const { projectName, projectDescription, members } = req.body;
   try {
     Project.create({projectName, projectDescription, members}, (err, currProject) => {
@@ -93,7 +92,12 @@ userController.createProject = (req, res, next) => {
       message: {err: `${err}`}
     })
   }
-  
+}
+
+userController.createTask = (req, res, next) => {
+  // console.log('req: ', req);
+  console.log('should get task info: ', req.body);
+  return next();
 }
 
 userController.getUsers = (req, res, next) => {

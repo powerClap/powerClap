@@ -37,6 +37,16 @@ h1 {
   line-height: 1.1;
 }
 
+.column-container {
+  display: "grid", 
+  /* grid-template-columns: "repeat(3, 1fr)", 
+  gridGap: 20 */
+}
+
+
+
+
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;

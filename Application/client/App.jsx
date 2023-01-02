@@ -10,6 +10,7 @@ import { Link, Route, Routes } from 'react-router-dom';
 import Login from './Components/Login.jsx';
 import Dashboard from './Components/Dashboard.jsx';
 import CreateProject from './Components/CreateProject.jsx';
+import ProjectDisplay from './Components/ProjectDisplay.jsx';
 
 
 const App = props => {
@@ -18,12 +19,14 @@ const App = props => {
       <div>
         <ul>
           <li><Link to='/'>Home</Link></li>
+          <li><Link to='/test'>Project Display test</Link></li>
         </ul>
       </div>
 
       <Routes>
         <Route path='/' element={<Login />} />
         <Route path='/dashboard' element={<><CreateProject /><Dashboard /></>} />
+        <Route path='/test' element={<ProjectDisplay />} />
       </Routes>
     
     </>
