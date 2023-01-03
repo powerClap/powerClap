@@ -111,7 +111,7 @@ userController.getProjects = async (req, res, next) => {
   const user = await User.findOne({ username: req.session.user });
   let projects = [];
   if (user) {
-    projects = await Project.find({'_id': { $in: user.projects }});
+    projects = await Project.find({ '_id': { $in: user.projects } });
   }
   res.locals.projects = projects.map((project) => project.projectName);
   next();
@@ -148,18 +148,35 @@ userController.createTask = (req, res, next) => {
 
 userController.deleteTask = (req, res, next) => {
   // console.log('req.body: ', req.body);
-  try{
-    Card.findOneAndDelete({_id: req.body.id}, (err, deletedTask) => {
-      if(err) console.log(err);
-      else{
+  try {
+    Card.findOneAndDelete({ _id: req.body.id }, (err, deletedTask) => {
+      if (err) console.log(err);
+      else {
         // console.log(deletedTask);
         res.locals.deletedTask = deletedTask;
         return next();
       }
     })
-  } catch (err){
+  } catch (err) {
     return next({
       log: 'Express error handler caught userController.deleteTask middleware error',
+      status: 400,
+      message: { err: `${err}` }
+    })
+  }
+}
+
+userController.getProject = (req, res, next) => {
+  const { projectId } = req.body;
+  try {
+    Project.findById(projectId)
+      .then((project) => {
+        res.locals.project = project;
+        next();
+      })
+  } catch (err) {
+    return next({
+      log: 'Express error handler caught userController.getProject middleware error',
       status: 400,
       message: { err: `${err}` }
     })
@@ -171,16 +188,16 @@ userController.changeStage = (req, res, next) => {
   // console.log('req.body.data typeof: ',typeof req.body.data)
   const dataArr = req.body.data.split(',');
   // console.log(dataArr);
-  try{
-    Card.findOneAndUpdate({_id: dataArr[0]}, {stage: parseInt(dataArr[1]) + 1}, {new: true}, (err, updatedTask) => {
-      if(err) console.log(err);
-      else{
+  try {
+    Card.findOneAndUpdate({ _id: dataArr[0] }, { stage: parseInt(dataArr[1]) + 1 }, { new: true }, (err, updatedTask) => {
+      if (err) console.log(err);
+      else {
         // console.log(updatedTask.stage);
         res.locals.updatedTask = updatedTask;
         return next();
       }
     })
-  } catch (err){
+  } catch (err) {
     return next({
       log: 'Express error handler caught userController.changeState middleware error',
       status: 400,
