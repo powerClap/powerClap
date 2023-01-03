@@ -8,6 +8,7 @@ const ProjectDisplay = props => {
 
   const [task, setTask] = useState([]);
   const [changed, setChanged] = useState([]);
+  const [projectId, setProjectId] = useState(null);
 
   //useEffect will fetch the task cards from backend and update the state?
   useEffect(() => {
@@ -95,11 +96,12 @@ const ProjectDisplay = props => {
     .then(data => {
       console.log('current stage: ', data.stage);
       // setTask(...task);
+      window.location.reload();    
+
       setChanged(true);
     })
     .catch(err => console.log(err))
 
-    
   }
   
   // const tasksArr = [];

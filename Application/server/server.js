@@ -129,6 +129,10 @@ app.get('/auth/failure', (req, res) => {
   res.send('something went wrong..');
 })
 
+app.post('/user/getProject', userController.getProject, (req, res) => {
+  res.status(200).json();
+})
+
 //route for url not existed
 app.use((req, res) => {
   res.status(404).send('This is not the page you\'re looking for...')

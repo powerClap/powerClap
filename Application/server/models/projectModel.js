@@ -18,7 +18,8 @@ const projectSchema = mongoose.Schema({
   members: [{type: String}],
   creator: {
     type: Schema.Types.ObjectId,
-  }
+  },
+  tasks: [{ type: Schema.Types.ObjectId, ref: 'Card' }],
 })
 
 
