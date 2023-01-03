@@ -1,6 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+// import { GoogleLogin } from '@leecheuk/react-google-login';
+// import dotenv from 'dotenv'
+// const clientId = '420343936370-qqafu353om02erpsii3lgujgoousm1iq.apps.googleusercontent.com';
+// let env = dotenv.config();
 
 // Customized the useInput function to save user input on the login/signup page
 const useInput = init => {
@@ -41,8 +45,10 @@ const Login = props => {
       const requestOption = {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(userInfo)
-      }
+        body: JSON.stringify(userInfo),
+        // mode: 'no-cors',
+        credentials: 'include',
+      };
       fetch(url, requestOption)
         .then((response) => response.json())
         .then(({ success }) => {
@@ -87,7 +93,8 @@ const Login = props => {
       const requestOption = {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(userInfo)
+        body: JSON.stringify(userInfo),
+        withCredentials: true,
       }
       const response = await fetch(url, requestOption);
     }
@@ -95,9 +102,30 @@ const Login = props => {
 
   //handleGoogle send request to backend for google Oauth
   const handleGoogle = () => {
-    console.log('This should send request for google Oauth');
+    // fetch('/auth/google', {
+    //   method: 'GET',
+    //   credentials: 'include'
+    // })
+    // .then(response => response.json())
+    // .then(data => {
+    //   // do something with the data
+    //   console.log('OAuth data: ', data);
+    // })
+    // .catch(error => {
+    //   console.error('OAuth error:', error);
+    // })
+    // console.log('This should send request for google Oauth');
+    
+    window.location.replace("/auth/google");
   }
 
+  // const onSuccess = (res) => {
+  //   console.log("LOGIN SUCCESS! Current user: ", res.profileObj);
+  // }
+
+  // const onFailure = (res) => {
+  //   console.log("LOGIN FAILED! res: ", res);
+  // }
 
   return (
     <div>
@@ -118,3 +146,13 @@ const Login = props => {
 
 
 export default Login;
+
+
+{/* <GoogleLogin
+        clientId={clientId}
+        buttonText="Login"
+        onSuccess={onSuccess}
+        onFailure={onFailure}
+        cookiePolicy={'single_host_origin'}
+        isSignedIn={true}
+      /> */}

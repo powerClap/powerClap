@@ -5,7 +5,9 @@ export default function reducer(state, action) {
       //do stuff
       return { ...state, darkMode: action.payload };
     }
-
+    case 'SET_USERNAME': {
+      return { ...state, username: action.payload };
+    }
     default: return state;
   }
 }

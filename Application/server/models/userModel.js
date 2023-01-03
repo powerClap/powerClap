@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
 const userSchema = mongoose.Schema({
   username: {
@@ -14,10 +14,11 @@ const userSchema = mongoose.Schema({
     type: String,
     required: [true, 'Please add a password']
   },
+  projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }]
 },
-{
-  timestamps: true
-});
+  {
+    timestamps: true
+  });
 
 // module.exports = mongoose.model('User', userSchema);
 

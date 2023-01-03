@@ -2,8 +2,7 @@ import mongoose from 'mongoose';
 
 const cardSchema = mongoose.Schema({
   project: {
-    type: ObjectId,
-    ref: 'Project',
+    type: String,
     required: true
   },
   description: {
@@ -11,7 +10,14 @@ const cardSchema = mongoose.Schema({
     required: true,
   },
   responsibleBy: [{type: String}],
-  stage: {type: String},
+  startDate: {type: String},
+  deadline: {type: String},
+  //stage will be numbers from 1 to 4
+  //1 means 'to do'
+  //2 for 'in progress'
+  //3 for 'to verify'
+  //4 for 'completed'
+  stage: {type: Number},
 })
 
 

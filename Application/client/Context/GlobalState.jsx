@@ -4,12 +4,7 @@ import AppReducer from './AppReducer'
 
 
 const initialState = {
-  //stuff like columns?
-  //stories
-  //to do
-  //in progress
-  //to verify
-  //boxes to go in columns?
+  username: null,
 };
 
 // this is the object you import in any component to access state
@@ -28,9 +23,17 @@ export const GlobalProvider = ({ children }) => {
     })
   }
 
+  const setUsername = (username) => {
+    dispatch({
+      type: 'SET_USERNAME',
+      payload: username,
+    });
+  }
+
   const values = {
     ...state,
     toggleDarkMode,
+    setUsername,
   };
 
   return (
