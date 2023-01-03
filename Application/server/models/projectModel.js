@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
 const projectSchema = mongoose.Schema({
   projectName: {
@@ -15,7 +15,10 @@ const projectSchema = mongoose.Schema({
   //   ref: 'User',
   //   required: true
   // },
-  members: [{type: String}]
+  members: [{type: String}],
+  creator: {
+    type: Schema.Types.ObjectId,
+  }
 })
 
 

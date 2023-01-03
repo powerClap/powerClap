@@ -1,12 +1,15 @@
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth2';
 import mongoose from 'mongoose';
-// import googleUser from '../models/googleModel';
+import googleUser from './models/googleModel.js';
+import dotenv from 'dotenv'
+
+dotenv.config();
 
 passport.use(new GoogleStrategy({
     clientID:     process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/google/callback",
+    callbackURL:  "http://localhost:5173/auth/google/callback",
     passReqToCallback   : true
   },
   function(request, accessToken, refreshToken, profile, done) {
@@ -15,8 +18,8 @@ passport.use(new GoogleStrategy({
     // });
 
     // Register user here
-    console.log(profile);
-    return done(null, profile);
+    console.log('OAUTH HERE', profile);
+    done(null, profile);
   }
 ));
 
@@ -28,9 +31,3 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((id, done) => {
   done(null, user);
 });
-
-// passport.use(strategy);
-
-
-
-// export default { passport };

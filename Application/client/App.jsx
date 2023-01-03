@@ -5,21 +5,33 @@
 // make App as a dummy container to display various routes as nav bar
 import './App.css'
 import React from 'react';
-import { useEffect } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import Login from './Components/Login.jsx';
 import Dashboard from './Components/Dashboard.jsx';
 import CreateProject from './Components/CreateProject.jsx';
 import ProjectDisplay from './Components/ProjectDisplay.jsx';
-
+// import { useEffect } from 'react';
+// import { gapi } from 'gapi-script';
 
 const App = props => {
+  // useEffect(() => {
+  //   function start() {
+  //      gapi.client.init({
+  //       clientId: clientId,
+  //       scope: ""
+  //      })
+  //   };
+  //   gapi.load('client:auth2', start);
+  // })
   return (
     <>
-      <div>
+    <header>
+        <h1>powerClap</h1>
+    </header>
+      <div id='nav'>
         <ul>
-          <li><Link to='/'>Home</Link></li>
-          <li><Link to='/test'>Project Display test</Link></li>
+          <li id='home'><Link to='/'>Home</Link></li>
+          <li id='test'><Link to='/test'>Project Display test</Link></li>
         </ul>
       </div>
 

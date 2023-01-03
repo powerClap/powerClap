@@ -27,25 +27,59 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
+  /* place-items: center; */
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
+} 
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
 
-.column-container {
-  display: "grid", 
-  /* grid-template-columns: "repeat(3, 1fr)", 
-  gridGap: 20 */
+.task-container {
+  border-radius: 5px;
+  border: 2px solid black;
 }
 
+ .form {
+  border: 2px solid lightgray;
+  justify-content: center;
+  align-content: center;
+} 
 
 
+ .column-container {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  width: 100vw;
+  grid-gap: 20;
+  border-radius: 5px;
+  border: 2px solid black;
+  margin-left: 0;
+}
 
+.column1 {
+  border-radius: 5px;
+  border: 2px solid black;
+  padding: 5px;
+} 
+.column2 {
+  border-radius: 5px;
+  border: 2px solid black;
+  padding: 5px;
+} 
+.column3 {
+  border-radius: 5px;
+  border: 2px solid black;
+  padding: 5px;
+} 
+.column4 {
+  border-radius: 5px;
+  border: 2px solid black;
+  padding: 5px;
+} 
 
 button {
   border-radius: 8px;

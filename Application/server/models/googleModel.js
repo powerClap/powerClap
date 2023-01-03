@@ -29,8 +29,6 @@ const googleSchema = mongoose.Schema({
   timestamps: true
 });
 
-// module.exports = mongoose.model('User', userSchema);
-
 const googleUser = mongoose.model('googleUser', googleSchema);
 
 export default googleUser;
